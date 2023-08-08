@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HR Page</title>
+</head>
+<body>
+    <h1>HR Page</h1>
+    <form action="/hrsearch" method="post">
+        <label for="team_leader_id">Team Leader ID:</label>
+        <input type="number" id="team_leader_id" name="team_leader_id" required><br><br>
+
+        <input type="submit" value="Search">
+    </form>
+    <h2>Employees</h2>
+    {% for supervisor in supervisors %}
+    <p>Team Leader ID: {{ supervisor.eid }} | Name: {{ supervisor.name }}</p>
+    <ul>
+        {% for subordinate in supervisor.subordinates %}
+        <li>
+            ID: {{ subordinate.id }} | Name: {{ subordinate.name }} | Department: {{ subordinate.department }} | Employee-ID: {{ subordinate.eid }} | email: {{ subordinate.email }} | Contact-No: {{ subordinate.contactNo }}| Address: {{ subordinate.address }} | Blood: {{ subordinate.blood }}
+            {% if subordinate.status == 'stay' %}
+                | <a href="/apply_resignation/{{ subordinate.id }}" class="btn btn-danger">Apply Resignation</a>
+            {% else %}
+                | <button class="btn btn-danger" disabled>Apply Resignation</button>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</body>
+</html>

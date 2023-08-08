@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+</head>
+<body>
+    <div class="banner">
+        <div class="navbar">
+            <div class="nav">
+                <img src="{{ url_for('static', filename='images/icon.png') }}" class="icon">
+            </div>
+        </div>
+    <h1 class="content">Search Results</h1>
+    <h2 >Team Leader ID: {{ team_leader_id }}</h2>
+    {% if employees %}
+    <table class="table">
+        <thead>
+            <tr class="tr">
+                <th class="th">S.No</th>
+                <th class="th">Name</th>
+                <th class="th">Employee-ID:</th>
+                <th class="th">Department</th>
+                <th class="th">Email</th>
+                <th class="th">Contact-No</th>
+                <th class="th">Supervisor ID</th>
+                <th class="th">Address</th>
+                <th class="th">Blood</th>
+                <th class="th">Team Leader</th>
+                <th class="th">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.eid }}</td>
+                <td>{{ employee.department }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.contactNo }}</td>
+                <td>{{ employee.supervisor_id }}</td>
+                <td>{{ employee.address }}</td>
+                <td>{{ employee.blood }}</td>
+                <td>{{ employee.team_leader_id }}</td>
+                <td>{{ employee.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No employees found under the specified Team Leader ID.</p>
+    {% endif %}
+    </div>
+</body>
+</html>

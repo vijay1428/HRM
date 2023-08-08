@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Apply Resignation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+</head>
+<body>
+    <div class="banner">
+        <div class="navbar">
+            <div class="nav">
+                <img src="{{ url_for('static', filename='images/icon.png') }}" class="icon">
+            </div>
+        </div>
+    <div class="container mt-4">
+        <h1 class="content">Apply Resignation</h1>
+        <div style="position: relative; left:500px; top:40px;">
+        <form class="form-reg" method="POST" action="{{ url_for('apply_resignation') }}">
+            <div class="input-fields1">
+            
+                <label class="text" for="eid">Employee ID:</label>
+                <select class="ip1" class="form-control" id="eid" name="eid" required>
+                    {% for employee in employees %}
+                        <option value="{{ employee.id }}">{{ employee.eid }}</option>
+                    {% endfor %}
+                </select><br><br>
+                <label class="text" for="resignation_date">Resignation Date:</label>
+                <input class="ip1" type="date" class="form-control" id="resignation_date" name="resignation_date" required>
+            <br><br>
+            <button type="submit" class="button2 button-china">Submit</button></div>
+        </form></div>
+    </div></div>
+</body>
+</html>

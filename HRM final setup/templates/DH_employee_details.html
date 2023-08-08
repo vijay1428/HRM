@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+</head>
+<body>
+    <div class="banner">
+        <div class="navbar">
+            <div class="nav">
+                <img src="{{ url_for('static', filename='images/icon.png') }}" class="icon">
+            </div>
+{% if current_user.role == 'HR' %}
+<input class="submit" type="button" value="HR Leave Request" onclick="hr_leave_request()">
+{% elif current_user.role == 'Department Head' %}
+<input class="submit" type="button" value="Dean Leave Request" onclick="DH_leave_request()">
+{% endif %}
+<br>
+<input class="submit" type="button" value="Leave form" onclick="leaveform()">
+<input class="submit" type="button" value="Approve leave" onclick="approve_leave()">
+
+<input class="submit" type="button" value="Search" onclick="search()">
+<input class="submit" type="button" value="Every employee" onclick="everysearch()">
+<input class="submit" type="button" value="Logout" onclick="logout()">
+{% if not employee.resignation_date %}
+<a href="{{ url_for('apply_resignation', eid=employee.id) }}" class="submit1">RESIGN</a>
+{% else %}
+<span>Resignation Applied</span>
+{% endif %}
+</div>
+
+<div>
+        <h1 class="content">VIVIDOBOTS DEAN CONSOLE</h1>
+        <div class="tablebox">
+        <table class="table" action="/dh_again">
+            <thead>
+                <tr class="tr">
+                    <th class = "th">Name</th>
+                    <th class = "th">Employee-ID:</th>
+                    <th class = "th">Department</th>
+                    <th class = "th">Email</th>
+                    <th class = "th">Contact-No</th>
+                    <th class = "th">Team Leader Name</th>
+                    <th class = "th">Address</th>
+                    <th class = "th">Blood</th>
+                    <th class = "th">Team Leader ID</th>
+                    <th class = "th">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+        <tr>
+            
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.eid }}</td>
+            <td>{{ employee.department }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.contactNo }}</td>
+            <td>{{ employee.supervisor_id }}</td>
+            <td>{{ employee.address }}</td>
+            <td>{{ employee.blood }}</td>
+            <td>{{ employee.team_leader_id }}</td>
+            <td>{{ "Exit" if employee.status == 'exit' else "Stay" }}</td></tr>
+            <tr> <td>
+                <form class="form0" action="{{ url_for('add_employee', user_id=employee.id) }}" method="post">
+                    <button type="submit" class="submit">Edit</button>
+                </form>
+            </td> </tr><!--  -->
+
+</tbody>
+
+        </table>
+    </div></div>
+   
+    <script>
+        function logout() {
+            window.location.href = "/logout";
+        }
+        function leaveform() {
+            window.location.href = "/req";
+        }
+        function approve_leave() {
+            window.location.href = "/leave";
+        }
+        function DH_leave_request() {
+            window.location.href = "/department_leave_requests";
+        }
+       
+        function search() {
+            window.location.href = "/search";
+        }
+        function everysearch() {
+            window.location.href = "/everysearch";
+        }
+    </script>
+</body>
+</html>
+
+
+
+

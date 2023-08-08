@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/new.css') }}">
+</head>
+<body>
+<div class="banner">
+        <div class="navbar">
+            <div class="nav">
+                <img src="{{ url_for('static', filename='images/icon.png') }}" class="icon">
+            </div>
+        </div>
+
+    <div class="content1">
+    <h1>&nbsp; &nbsp;&nbsp;&nbsp;Register</h1>
+    </div>
+
+    {% if error %}
+        <p style="color: red;">Username already exists.</p>
+    {% endif %}
+
+    <div style="position: relative; left:40px; top:150px;">
+    <form class="form-register" method="POST" action="/register">
+<div class="input-fields1">
+        <label class="text" for="eid">EMPLOYEE ID:</label>
+        <input class="ip1" type="text" id="eid" name="eid" required><br><br>
+
+        <label class="text" for="email">EMAIL-ID:</label>
+        <input class="ip1" type="email" name="email" id="email" required><br><br>
+
+        <label class="text" for="password">PASSWORD:</label>
+        <input class="ip1" type="password" id="password" name="password" required><br><br>
+        <label class="text" for="role">ROLE:</label>
+
+    <select   id="role" name="role" required>
+            <option value="HR">HR</option>
+            <option value="Department Head">Department Head</option>
+            <option  value="Employee">Employee</option>
+        </select>
+
+<br>
+        <input class= "button1 button-china" type="submit" value="Register"></div>
+        </div>
+    </form>
+    </div>
+</div>
+</body>
+</html>
