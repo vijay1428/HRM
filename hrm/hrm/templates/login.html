@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/new.css') }}">
+    <style>
+        .banner {
+            background-image: 
+            url("{{ url_for('static', filename='images/bg.png') }}");
+        }
+    </style>
+</head>
+<body>
+
+   <div class="banner">
+   <div class="navbar">
+    <div class="nav">
+        <img src="{{ url_for('static', filename='images/icon.png') }}" class="icon">
+                       <img src="{{ url_for('static', filename='images/name.png') }}" class="icon2">
+    </div>
+   </div>
+<div class="bg">
+       
+
+    {% if error %}
+        <p style="color: red;">Invalid username or password.</p>
+    {% endif %}
+    <!----
+<h1 class="content">&nbsp;&nbsp; &nbsp;&nbsp;LOGIN</h1> --->
+       <div style="position: relative; left:40px; top:150px;">
+
+    <form class="form" method="post" action="/login">
+        
+        <div class="input-fields">
+            
+
+        <label class="text" for="eid">EMPLOYEE ID:</label>
+        <input class="ip"  type="text" name="eid" id="eid" required><br><br>
+
+        <label class="text" for="password">PASSWORD:</label>
+        <input class="ip"  type="password" name="password" id="password" required><br><br>
+<div class="button-container">
+        <input class= "button button-china" type="submit" value="LOGIN"> <input class="button button-china" type="submit" value="REGISTER" onclick="REGISTER()">
+</div>
+    </div></form>
+<script>
+    function REGISTER() {
+            window.location.href = "/register";
+        }
+</script>
+           </div>
+        
+        
+        </div>
+</div>
+</body>
+</html>
